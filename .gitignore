@@ -6,7 +6,7 @@
 *.log
 node_modules
 
-.code-workspace
+*.code-workspace
 # Include when developing application packages.
 pubspec.lock
 .idea/
