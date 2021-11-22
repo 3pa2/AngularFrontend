@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import BaseComponent from 'src/app/shared/base-component';
+import { LoadingService } from 'src/app/shared/services/loading.service';
 import { passwordMustBeStrongValidator } from 'src/app/shared/validators/password-validator';
 import { LoginModel } from 'src/models/login-model';
 
@@ -13,7 +14,7 @@ export class LoginComponent  extends BaseComponent implements OnInit {
 
   loginFormGroup: FormGroup;
 
-  constructor(private fb:FormBuilder) {
+  constructor(private fb:FormBuilder,private loadingService:LoadingService) {
     super()
     this.loginFormGroup = this.fb.group({
       email:'',
@@ -43,8 +44,11 @@ export class LoginComponent  extends BaseComponent implements OnInit {
     this.isInProcess = true;
     console.log(data.email);
     console.log(data.password);
+    this.loadingService.isLoading = true;
+
     setTimeout(() => {
       this.isInProcess = false;
+      this.loadingService.isLoading = false;
     }, 2000);
   }
 }
