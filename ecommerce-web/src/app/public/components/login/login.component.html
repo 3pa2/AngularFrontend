@@ -1,35 +1,35 @@
 <div class="login-wrapper">
-  <form class="login">
+  <form class="login" [formGroup]="loginFormGroup" (ngSubmit)="onSubmit(loginFormGroup.value)">
     <section class="title">
       <h3 class="welcome">Welcome to</h3>
-      Company Product Name
-      <h5 class="hint">Use your Company ID to sign in or create one now</h5>
+      Multitenant Ecommerce
     </section>
     <div class="login-group">
-      <clr-select-container>
-        <label class="clr-sr-only">User Role</label>
-        <select clrSelect name="type">
-          <option value="local">Local Users</option>
-          <option value="admin">Administrator</option>
-        </select>
-      </clr-select-container>
       <clr-input-container>
-        <label class="clr-sr-only">Username</label>
-        <input type="text" name="username" clrInput placeholder="Username"  />
+        <label class="clr-sr-only">email</label>
+        <input type="text" name="email" formControlName="email" clrInput placeholder="Email" />
+        <clr-control-error *clrIfError="'required'">This field is required!</clr-control-error>
+        <clr-control-error *clrIfError="'maxLength'">Max length is (256) characters!</clr-control-error>
+        <clr-control-error *clrIfError="'email'">The email is invalid!</clr-control-error>
       </clr-input-container>
       <clr-password-container>
         <label class="clr-sr-only">Password</label>
-        <input type="password" name="password" clrPassword placeholder="Password" />
+        <input type="password" name="password" formControlName="password" clrPassword placeholder="Password" />
+        <clr-control-helper>At least 8 characters.</clr-control-helper>
+        <clr-control-helper>Must contain at least 1 uppercase letter.</clr-control-helper>
+        <clr-control-helper>Must contain at least 1 lowercase letters.</clr-control-helper>
+        <clr-control-helper>Must contain at least 1 number.</clr-control-helper>
+        <clr-control-error *clrIfError="'password'">At least 8 characters.</clr-control-error>
+        <clr-control-error *clrIfError="'password'">Must contain at least 1 uppercase letter.</clr-control-error>
+        <clr-control-error *clrIfError="'password'">Must contain at least 1 lowercase letters.</clr-control-error>
+        <clr-control-error *clrIfError="'password'">Must contain at least 1 number.</clr-control-error>
       </clr-password-container>
       <clr-checkbox-wrapper>
         <label>Remember me</label>
-        <input type="checkbox" name="rememberMe" clrCheckbox  />
+        <input type="checkbox" name="rememberMe" formControlName="rememberMe" clrCheckbox />
       </clr-checkbox-wrapper>
-      <div class="error active">
-        Invalid user name or password
-      </div>
-      <button type="submit" class="btn btn-primary">NEXT</button>
-      <a href="javascript://" class="signup">Sign up for a Company ID</a>
+      <button type="submit" class="btn btn-primary" [disabled]="loginFormGroup.invalid || isInProcess" >Login</button>
+      <a href="javascript://" class="signup">Or sign up</a>
     </div>
   </form>
 </div>
