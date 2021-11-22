@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { filterAnimationsByUpdatedProperties } from '@cds/core/internal';
 import BaseComponent from 'src/app/shared/base-component';
 import { LoadingService } from 'src/app/shared/services/loading.service';
 import { passwordMustBeStrongValidator } from 'src/app/shared/validators/password-validator';
@@ -45,7 +46,6 @@ export class LoginComponent  extends BaseComponent implements OnInit {
     console.log(data.email);
     console.log(data.password);
     this.loadingService.isLoading = true;
-
     setTimeout(() => {
       this.isInProcess = false;
       this.loadingService.isLoading = false;
