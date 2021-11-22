@@ -1,9 +1,13 @@
 import { NgModule } from "@angular/core";
-import { RouterModule, Routes } from "@angular/router";
+import type { Routes } from "@angular/router";
+import { RouterModule } from "@angular/router";
 import { LoginComponent } from "./components/login/login.component";
 import { PUBLIC_ROUTES_NAMES } from "./enums/public.routes.names";
 
 const routes:Routes = [
+  {
+    path:"",redirectTo:PUBLIC_ROUTES_NAMES.LOGIN, pathMatch:"full"
+  },
   {
     path: PUBLIC_ROUTES_NAMES.LOGIN,
     component: LoginComponent
@@ -18,10 +22,4 @@ const routes:Routes = [
   exports:[RouterModule]
 })
 
-export class PublicRoutingModule {
-  /**
-   *
-   */
-  constructor() {
-  }
-}
+export class PublicRoutingModule {}
